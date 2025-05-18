@@ -30,6 +30,10 @@ public class AvlTree<E> extends MyTree<E> {
 		this.comparator = comparator;
 		this.root = null;
 	}
+	
+	public NodeTree<E> getRoot() {
+		return root;
+	}
 
 	@Override
 	public boolean isEmpty() {

@@ -27,7 +27,7 @@ public class NodeTree<E> {
 	/**
 	 * Apuntador al nodo de la derecha
 	 */
-	protected NodeTree<E> right;
+	public NodeTree<E> right;
 
 	/**
 	 * Apuntador al nodo de la izquierda
@@ -103,5 +103,13 @@ public class NodeTree<E> {
 		leftList = new SimplyLinkedList<>(this.comparator, this.order);
 		rightList = new SimplyLinkedList<>(this.comparator, this.order);
 		this.info = info;
+	}
+
+	public NodeTree<E> getRight() {
+		return right;
+	}
+
+	public NodeTree<E> getLeft() {
+		return left;
 	}
 }
