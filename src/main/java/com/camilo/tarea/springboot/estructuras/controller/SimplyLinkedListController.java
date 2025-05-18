@@ -1,5 +1,6 @@
 package com.camilo.tarea.springboot.estructuras.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,23 +15,37 @@ public class SimplyLinkedListController {
 
 	private ManagerUser managerUser;
 	
+	@Value("${config.columnTables}")
+	private String[] textTable;
+	
 	public SimplyLinkedListController() {
 		managerUser = new ManagerUser();
 	}
 
 	@GetMapping({"/simplyList"})
-	public String list(Model model) {
+	public String list(Model model, 
+			@Value("${config.messageSimplyList}") String message,
+			@Value("${config.btnSelect}") String selectText,
+			@Value("${config.optionSelect}") String optionSelect) {
 		SimplyLinkedList<User> userList = managerUser.getusersOnSimpleList();
-		model.addAttribute("title", "Usuarios de la lista simplemente enlazada");
+		model.addAttribute("title", message);
+		model.addAttribute("textTable", textTable);
+		model.addAttribute("optionSelect", optionSelect);
+		model.addAttribute("selectText", selectText);
 		model.addAttribute("userList", userList);
 		return "list";
 	}
 	
 	@GetMapping("/simplyOne")
-	public String userSelected(Model model, @RequestParam long idUser) {
+	public String userSelected(Model model, @RequestParam long idUser, 
+			@Value("${config.messageUserSelected}") String message,
+			@Value("${config.btnBack}") String btnBack) {
 		User user = managerUser.getUserOnSimpleList(idUser);
-		model.addAttribute("title", "Usuario seleccionado");
+		model.addAttribute("title", message);
+		model.addAttribute("textTable", textTable);
 		model.addAttribute("user", user);
+		model.addAttribute("btnBack", btnBack);
+		model.addAttribute("back", "/simplyList");
 		return "user";
 	}
 }

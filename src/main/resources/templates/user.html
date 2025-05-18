@@ -11,25 +11,28 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th colspan="2">Usuario Seleccionado</th>
+						<th colspan="2" th:text="${title}"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>Nombre</td>
+						<td th:text="${textTable[0]}"></td>
 						<td th:text="${user.name}"></td>
 					</tr>
 					<tr>
-						<td>Apellido</td>
+						<td th:text="${textTable[1]}"></td>
 						<td th:text="${user.lastName}"></td>>
 					</tr>
 					<tr>
-						<td>Identificador</td>
+						<td th:text="${textTable[2]}"></td>
 						<td th:text="${user.idUser}"></td>
 					</tr>
 				</tbody>
 			</table>
-			<a class="mt-2 btn bg-success text-white" href="/">Volver</a>
+			<a 
+				class="mt-2 btn bg-success text-white" 
+				th:href="${back}"
+				th:text="${btnBack}"></a>
 		</div>
 	</body>
 </html>

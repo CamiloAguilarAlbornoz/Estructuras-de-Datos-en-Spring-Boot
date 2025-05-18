@@ -11,10 +11,11 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Cédula</th>
-						<th>Seleccione</th>
+						<th 
+							th:each="option : ${textTable}" 
+							th:text="${option}">
+						</th>
+						<th th:text="${optionSelect}"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -23,7 +24,11 @@
 						<td th:text="${user.lastName}"></td>
 						<td th:text="${user.idUser}"></td>
 						<td>
-							<a class="btn bg-success text-white" th:href="@{/simplyOne(idUser=${user.idUser})}">Seleccionar</a>
+							<a
+								class="btn bg-success text-white" 
+								th:href="@{/simplyOne(idUser=${user.idUser})}"
+								th:text="${selectText}">
+							</a>
 						</td>
 					</tr>
 				</tbody>
